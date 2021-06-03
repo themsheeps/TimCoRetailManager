@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace TRMDataManager.Controllers
 {
@@ -13,7 +14,9 @@ namespace TRMDataManager.Controllers
         // GET api/values
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            string userId = RequestContext.Principal.Identity.GetUserId();
+            string userName = RequestContext.Principal.Identity.GetUserName();
+            return new string[] { "value1", "value2", "UserId = " + userId, "UserName = " + userName, };
         }
 
         // GET api/values/5
